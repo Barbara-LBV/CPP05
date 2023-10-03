@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/09/07 15:57:54 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 14:30:52 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Form::Form(std::string const &name, int const gradeSigned, int const gradeExec) 
     std::cout << GREEN "Form Parametric Constructor -> called" DEFAULT << std::endl;
 
     _signed = false;
-   checkGrade();
+   checkGrades();
 }
 
 Form::Form(Form const &b) : _gradeSigned(1), _gradeExec(1)
@@ -45,20 +45,16 @@ Form &Form::operator=(Form const &b)
         Form(b._name, b._gradeSigned, b._gradeExec);
         _signed = b._signed;
     }
-    checkGrade();
+    //checkGrades();
     return (*this);
 }
 
 std::ostream &operator<<(std::ostream &c, const Form &f)
 {
-    c << f.getName() << std::endl;
-    c << f.getGradeExec() << std::endl;
-    c << f.getGradeSigned() << std::endl;
-    c << f.getSigned() << std::endl;
-    /*std::cout << MAGENTA << f.getName() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getGradeExec() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getGradeSigned() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getSigned() << DEFAULT << std::endl;*/
+    c << f.getName() << " Form has to be signed by a "
+      << f.getGradeSigned() << " grade and execute by a "
+      << f.getGradeExec() << " grade, it is "
+      << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
     return (c);
 }
 
@@ -87,7 +83,14 @@ void    Form::setSigned(int i)
     this->_signed = i;
 }
 
-void   Form::checkGrade(void)const
+void	Form::checkExec( const Bureaucrat &b) const
+{
+	if (this->_signed == false
+			|| b.getGrade() < this->_gradeExec)
+		throw Form::CantExecuteForm();
+}
+
+void   Form::checkGrades(void)const
 {
     if (getGradeExec() < Form::_highestGrade || getGradeSigned() < Form::_highestGrade)
 		throw Form::GradeTooHighException();

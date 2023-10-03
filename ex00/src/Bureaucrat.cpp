@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/09/06 11:49:43 by root             ###   ########.fr       */
+/*   Updated: 2023/10/02 15:22:59 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
     c << b.getGrade();
-    return (c)
+    return (c);
 }
 
 std::string const    &Bureaucrat::getName(void)const

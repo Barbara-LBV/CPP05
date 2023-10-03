@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/09/07 16:03:17 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 14:36:33 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int	main(void)
 {
 	try
 	{
-		Form	f("EB110", 0, 1);
+		Form	f("EB110", 2, 1);
+		std::cout << f << std::endl;
+		Bureaucrat	john("John", 0);
+		f.beSigned(john); //as the 0 has beean caught, this fonction doesn't work
+		john.signForm(f);
 	}
 	catch (std::exception &e)
 	{
@@ -61,7 +65,7 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat	john = Bureaucrat("John", 10);
+		Bureaucrat	john("John", 10);
 		Form		f("EB114", 150, 150);
 
 		std::cout << f << std::endl;
@@ -78,7 +82,7 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat	joe = Bureaucrat("Joe", 10);
+		Bureaucrat	joe("Joe", 10);
 		Form		f("EB115", 1, 1);
 
 		std::cout << f << std::endl;
@@ -90,6 +94,5 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
-
 	return 0;
 }

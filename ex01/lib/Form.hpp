@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/09/07 16:01:49 by root             ###   ########.fr       */
+/*   Updated: 2023/10/02 15:02:15 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ class Form
         bool const                  &getSigned(void)const;
         void                        setSigned(int i);
         void                        beSigned(Bureaucrat b);
-        void                        checkGrade(void)const;
+        void                        checkGrades(void)const;
+        void                        checkExec(const Bureaucrat &b)const;
         
 
     private:
@@ -72,6 +73,15 @@ class Form
 		virtual const char* what() const throw()
 		{
 			return (MAGENTA "The execution or signed grade you set is too low" DEFAULT);
+		}
+	};
+
+    class CantExecuteForm : public std::exception
+	{
+	public:
+		virtual const char* what() const throw()
+		{
+			return ("The form can't be executed");
 		}
 	};
 };

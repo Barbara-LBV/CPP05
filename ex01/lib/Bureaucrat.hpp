@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:54:15 by root              #+#    #+#             */
-/*   Updated: 2023/09/07 16:01:23 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 14:27:39 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ class Bureaucrat
         void                incrementGrade(int grade);
         void                decrementGrade(int grade);
         void                setGrade(int nb);
-        void                signForm(Form &f);
+        bool                signForm(Form &f)const;
+        bool	            executeForm(const Form &f)const;
 
     private:
         std::string const   _name;
