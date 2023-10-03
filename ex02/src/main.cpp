@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/09/09 16:02:55 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 18:20:39 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,25 @@
 int	main(void)
 {
 	AForm			*form = NULL;
-	Bureaucrat		bob("bob", 1);
-	Bureaucrat		phil("phil", 40);
-	Bureaucrat		luc("luc", 150);
+	/*try
+	{
+		Bureaucrat		bob("Bob", 151);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}*/
+	
+	Bureaucrat		bob("Bob", 1);
+	Bureaucrat		phil("Phil", 40);
+	Bureaucrat		luc("Luc", 150);
 
 	try
 	{
 		form = new PresidentialPardonForm("28Z");
-		form->execute(bob);
+		form->beSigned(bob);
+		bob.signForm(*form);
+		bob.executeForm(*form);
 		delete form;
 		form = NULL;
 	}
@@ -38,7 +49,8 @@ int	main(void)
 	{
 		form = new PresidentialPardonForm("28A");
 		form->beSigned(bob);
-		form->execute(bob);
+		bob.signForm(*form);
+		bob.executeForm(*form);
 		delete form;
 		form = NULL;
 	}
@@ -52,15 +64,11 @@ int	main(void)
 	{
 		form = new RobotomyRequestForm("28B");
 		form->beSigned(bob);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
+		bob.signForm(*form);
+		bob.executeForm(*form);
+		form->beSigned(phil);
+		phil.signForm(*form);
+		phil.executeForm(*form);
 		delete form;
 		form = NULL;
 	}
@@ -74,8 +82,14 @@ int	main(void)
 	{
 		form = new ShrubberyCreationForm("28C");
 		form->beSigned(bob);
-		form->execute(phil);
-		form->execute(luc);
+		form->beSigned(phil);
+		form->beSigned(luc);
+		phil.signForm(*form);
+		bob.signForm(*form);
+		luc.signForm(*form);
+		phil.executeForm(*form);
+		bob.executeForm(*form);
+		luc.executeForm(*form);
 		delete form;
 		form = NULL;
 	}

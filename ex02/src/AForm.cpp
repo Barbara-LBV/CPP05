@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 15:54:20 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 18:21:44 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,10 @@ AForm &AForm::operator=(AForm const &b)
 
 std::ostream &operator<<(std::ostream &c, const AForm &f)
 {
-    c << f.getName() << std::endl;
-    c << f.getGradeExec() << std::endl;
-    c << f.getGradeSigned() << std::endl;
-    c << f.getSigned() << std::endl;
-    /*std::cout << MAGENTA << f.getName() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getGradeExec() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getGradeSigned() << DEFAULT << std::endl;
-    std::cout << MAGENTA << f.getSigned() << DEFAULT << std::endl;*/
+    c << f.getName() << " Form has to be signed by a "
+    << f.getGradeSigned() << " grade and execute by a "
+    << f.getGradeExec() << " grade, it is "
+    << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
     return (c);
 }
 
@@ -98,15 +94,18 @@ void   AForm::checkGrade(void)const
 void    AForm::beSigned(Bureaucrat b)
 {
     if (b.getGrade() < 150 || b.getGrade() > 0)
-    {
         setSigned(1);
-        execute(b);
-    }
     else
     {
         if (b.getGrade() < 1)
+        {
 		    throw Bureaucrat::GradeTooHighException();
+            delete this;
+        }
 	    else if (b.getGrade() > 150)
-		    throw Bureaucrat::GradeTooLowException();
+		{
+            throw Bureaucrat::GradeTooLowException();
+            delete this;
+        }
     }
 }

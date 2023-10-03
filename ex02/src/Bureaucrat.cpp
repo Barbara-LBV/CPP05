@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 17:21:45 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 18:01:55 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
      std::cout << BLUE "Bureaucrat Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _grade = b._grade;
+    b.getName();
     checkGrade();
     return (*this);
 }
 
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
-    c << b.getGrade();
+    c << b.getName();
     return (c)
 ;}
 
@@ -82,25 +83,32 @@ void    Bureaucrat::setGrade(int nb)
 void   Bureaucrat::checkGrade(void)const
 {
     if (this->_grade < Bureaucrat::_highestGrade)
+    {
 		throw Bureaucrat::GradeTooHighException();
+        delete this;
+    }
 	else if (this->_grade > Bureaucrat::_lowestGrade)
-		throw Bureaucrat::GradeTooLowException();
+	{
+        throw Bureaucrat::GradeTooLowException();
+        delete this;
+    }
 }
 
-void    Bureaucrat::signForm(AForm &f)
+void    Bureaucrat::signForm(AForm const &f)
 {
     if (f.getSigned() == 1)
         std::cout << BOLD << this->getName() << " signed " << f.getName() << DEFAULT << std::endl;
     else if (f.getSigned() == false && this->_grade < 1)
-        std::cout << BOLD << this->getName()  << " couldn't sign " << f.getName() << " because grade is too high" << DEFAULT << std::endl;
+        std::cout << BOLD << this  << " couldn't sign " << f.getName() << " because grade is too high" << DEFAULT << std::endl;
     else if (f.getSigned() == false && this->_grade > 150)
-        std::cout << BOLD << this->getName()  << " couldn't sign " << f.getName() << " because grade is too low" << DEFAULT << std::endl;
+        std::cout << BOLD << this << " couldn't sign " << f.getName() << " because grade is too low" << DEFAULT << std::endl;
 }
 
 bool    Bureaucrat::executeForm(AForm const &form)
 {
     if (form.getSigned() == 1)
     {
+        form.execute(*this);
         std::cout << BOLD << this->getName() << " executed " << form.getName() << DEFAULT << std::endl;
         return (true);
     }
