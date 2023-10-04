@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:18:23 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 18:23:13 by root             ###   ########.fr       */
+/*   Updated: 2023/10/04 16:30:52 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Intern
 
     Intern &operator=(Intern const &b);
     
-    AForm   makeForm(std::string name, std::string target);    
+    AForm   *makeForm(std::string formName, std::string target);    
 };
 
 std::ostream &operator<<(std::ostream &c, const Intern &i);

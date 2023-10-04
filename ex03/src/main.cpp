@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 18:18:13 by root             ###   ########.fr       */
+/*   Updated: 2023/10/04 16:58:04 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,78 +18,48 @@
 
 int	main(void)
 {
+	{	
+		Intern someRandomIntern;
+		Bureaucrat		bob("bob", 1);
+		AForm *form;
+		form = someRandomIntern.makeForm("Robotomy Request", "Bender");
+		if (form == NULL)
+			return 0;
+		form->execute(bob);
+		delete form;
+	}
+	std::cout << std::endl;
 	{
 		Intern someRandomIntern;
-		Form* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	}
-
-	AForm			*form = NULL;
-	Bureaucrat		bob("bob", 1);
-	Bureaucrat		phil("phil", 40);
-	Bureaucrat		luc("luc", 150);
-
-	try
-	{
-		form = new PresidentialPardonForm("28Z");
+		Bureaucrat		bob("bob", 1);
+		AForm *form;
+		form = someRandomIntern.makeForm("Shrubbery Creation", "Bender");
+		if (form == NULL)
+			return 0;
 		form->execute(bob);
 		delete form;
-		form = NULL;
 	}
-	catch (std::exception &e)
+	std::cout << std::endl;
 	{
-		std::cout << e.what() << std::endl;
-	}
-
-	try
-	{
-		form = new PresidentialPardonForm("28A");
-		form->beSigned(bob);
+		Intern someRandomIntern;
+		Bureaucrat		bob("bob", 1);
+		AForm *form;
+		form = someRandomIntern.makeForm("Presidential Pardon", "Bender");
+		if (form == NULL)
+			return 0;
 		form->execute(bob);
 		delete form;
-		form = NULL;
 	}
-	catch (std::exception &e)
+	std::cout << std::endl;
 	{
-		std::cout << e.what() << std::endl;
-	}
-
-
-	try
-	{
-		form = new RobotomyRequestForm("28B");
-		form->beSigned(bob);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
-		form->execute(phil);
+		Intern someRandomIntern;
+		Bureaucrat		bob("bob", 1);
+		AForm *form;
+		form = someRandomIntern.makeForm("Presidential pardon", "Bender");
+		if (form == NULL)
+			return 0;
+		form->execute(bob);
 		delete form;
-		form = NULL;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
-
-	try
-	{
-		form = new ShrubberyCreationForm("28C");
-		form->beSigned(bob);
-		form->execute(phil);
-		form->execute(luc);
-		delete form;
-		form = NULL;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
 	return 0;
 }

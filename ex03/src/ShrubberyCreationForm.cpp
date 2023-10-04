@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:51:33 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 15:59:30 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 15:18:31 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void    ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         throw AForm::CantOpenFile();
 		return ;
 	}
-    printTree(3, 0, file);
-    std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << std::endl;
+    printTree(3, file);
+    std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file"<< std::endl;
 }
 
 void printSpaces(int n, std::ofstream &file)
@@ -69,22 +69,22 @@ void printSpaces(int n, std::ofstream &file)
         file << " ";
 }
 
-void printTree(int levels, int n, std::ofstream &file) 
+void printTree(int n, std::ofstream &file) 
 {
-    if (levels <= 0)
-        return ;
-
-    printSpaces(n, file);
-    file << "A" << std::endl;
-
-    printSpaces(n, file);
-    file << "|_" << "B" << std::endl;
-
-    printSpaces(n, file);
-    file << "|_" << "C" << std::endl;
-
-    printSpaces(n, file);
-    file << "|_" << "D" << std::endl;
+    for(int i = 0; i < n; i++)
+    {
+        printSpaces(5, file);
+        file << "#" << std::endl;
+        printSpaces(4, file);
+        file << "###" << std::endl;
+        printSpaces(3, file);
+        file << "#####" << std::endl;
+        printSpaces(2, file);
+        file << "#######"  << std::endl;
+        printSpaces(1, file);
+        file << "#########"  << std::endl;
+        printSpaces(4, file);
+        file << "||" << std::endl << std::endl;
+    }
     
-    printTree(levels - 1, n + 4, file);
 }

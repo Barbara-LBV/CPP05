@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:05:18 by root              #+#    #+#             */
-/*   Updated: 2023/09/09 16:14:22 by root             ###   ########.fr       */
+/*   Updated: 2023/10/03 15:15:39 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class ShrubberyCreationForm : public AForm
         std::string _target;
 };
 
-void    printTree(int levels, int n, std::ofstream &file);
+void    printTree(int n, std::ofstream &file);
 void    printSpaces(int n, std::ofstream &file);
 std::ostream &operator<<(std::ostream &c, const ShrubberyCreationForm &b);
 

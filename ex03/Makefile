@@ -6,11 +6,12 @@ NAME	= Polymorph
 # Source files list
 SRCS_DIR 	= src/
 
-SRCS_NAME 	= Animal.cpp \
-			WrongAnimal.cpp \
-			Dog.cpp \
-			Cat.cpp \
-			WrongCat.cpp \
+SRCS_NAME 	= Bureaucrat.cpp \
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp \
+			Intern.cpp \
 			main.cpp
 
 SRCS		=	$(wildcard $(SRCS_DIR)*.cpp)
@@ -23,11 +24,12 @@ DEPS		= $(addprefix $(OBJS_DIR), $(SRCS_NAME:%.cpp=%.d))
 
 # Headers list
 HEADER_DIR	:=	/lib/
-HEADER_NAME	:=	Animal.hpp \
-			WrongAnimal.hpp \
-			Dog.hpp \
-			Cat.hpp \
-			WrongCat.hpp
+HEADER_NAME	:=	Bureaucrat.hpp \
+			AForm.hpp \
+			ShrubberyCreationForm.hpp \
+			RobotomyRequestForm.hpp \
+			PresidentialPardonForm.hpp \
+			Intern.hpp
 
 HEADER		:=	-I.$(HEADER_DIR)
 

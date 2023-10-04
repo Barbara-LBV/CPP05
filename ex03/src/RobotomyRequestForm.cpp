@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:22 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 15:56:28 by root             ###   ########.fr       */
+/*   Updated: 2023/10/04 16:53:19 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void    RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
     std::cout << "   [Drilling noises]" DEFAULT << std::endl;
    if (std::rand() % 2)
-		std::cout << "Dear " << executor.getName() << ", The victime " << this->_target << " has been successfully robotomized" << std::endl;
+		std::cout << "Dear " << executor.getName() << ", the victim " << this->_target << " has been successfully robotomized" << std::endl;
 	else
 		std::cout << "The robotomization on " << this->_target << " may have completely failed." << std::endl;
 }
