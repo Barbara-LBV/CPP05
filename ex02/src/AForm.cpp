@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 18:21:44 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:05:24 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ AForm::AForm(std::string const &name, int const gradeSigned, int const gradeExec
 {
     std::cout << GREEN "AForm Parametric Constructor -> called" DEFAULT << std::endl;
     _signed = false;
-
-   checkGrade();
+   //checkGrade();
 }
 
 AForm::AForm(AForm const &b) : _gradeSigned(1), _gradeExec(1)
 {
     std::cout << GREEN "AForm Copy Constructor -> called" DEFAULT << std::endl;
-    //AForm(b._name, b._gradeSigned, b._gradeExec);
     _signed = b._signed;
 }
 
@@ -41,11 +39,8 @@ AForm &AForm::operator=(AForm const &b)
 {
     std::cout << GREEN "AForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
-    {
-        //AForm(b._name, b._gradeSigned, b._gradeExec);
         _signed = b._signed;
-    }
-    checkGrade();
+   // checkGrade();
     return (*this);
 }
 

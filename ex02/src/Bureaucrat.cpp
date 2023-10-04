@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 18:01:55 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/04 14:03:13 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,16 @@ void    Bureaucrat::signForm(AForm const &f)
 
 bool    Bureaucrat::executeForm(AForm const &form)
 {
+    signForm(form);
     if (form.getSigned() == 1)
     {
-        form.execute(*this);
         std::cout << BOLD << this->getName() << " executed " << form.getName() << DEFAULT << std::endl;
+        form.execute(*this);
         return (true);
     }
     else
     {
-        std::cout << BOLD << this->getName()  << " couldn't execute " << form.getName() << " because grade is too high" << DEFAULT << std::endl;
+        std::cout << BOLD << this->getName()  << " couldn't execute " << form.getName() << " because it hasn't been signed." << DEFAULT << std::endl;
         return (false);
     }
 }

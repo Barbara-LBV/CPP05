@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 18:20:39 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/04 14:05:30 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,20 @@
 int	main(void)
 {
 	AForm			*form = NULL;
-	/*try
+	form = new PresidentialPardonForm("28Z");
+	
+	try
 	{
-		Bureaucrat		bob("Bob", 151);
+		Bureaucrat		bib("Jerry", -1);
+		form->beSigned(bib);
+		bib.executeForm(*form);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
-	}*/
+	}
+	delete form;
+	form = NULL;
 	
 	Bureaucrat		bob("Bob", 1);
 	Bureaucrat		phil("Phil", 40);
@@ -35,13 +41,13 @@ int	main(void)
 	{
 		form = new PresidentialPardonForm("28Z");
 		form->beSigned(bob);
-		bob.signForm(*form);
 		bob.executeForm(*form);
 		delete form;
 		form = NULL;
 	}
 	catch (std::exception &e)
 	{
+		bob.executeForm(*form);
 		std::cout << e.what() << std::endl;
 	}
 
@@ -49,7 +55,6 @@ int	main(void)
 	{
 		form = new PresidentialPardonForm("28A");
 		form->beSigned(bob);
-		bob.signForm(*form);
 		bob.executeForm(*form);
 		delete form;
 		form = NULL;
@@ -64,10 +69,9 @@ int	main(void)
 	{
 		form = new RobotomyRequestForm("28B");
 		form->beSigned(bob);
-		bob.signForm(*form);
 		bob.executeForm(*form);
 		form->beSigned(phil);
-		phil.signForm(*form);
+
 		phil.executeForm(*form);
 		delete form;
 		form = NULL;
@@ -84,9 +88,6 @@ int	main(void)
 		form->beSigned(bob);
 		form->beSigned(phil);
 		form->beSigned(luc);
-		phil.signForm(*form);
-		bob.signForm(*form);
-		luc.signForm(*form);
 		phil.executeForm(*form);
 		bob.executeForm(*form);
 		luc.executeForm(*form);
