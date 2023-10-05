@@ -1,7 +1,7 @@
 # Variables
 COMP 	= c++
 FLAGS 	= -Wall -Wextra -Werror -std=c++98
-NAME	= BureaucratForm
+NAME	= a.out
 
 # Source files list
 SRCS_DIR 	= src/

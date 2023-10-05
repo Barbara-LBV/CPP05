@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 15:48:31 by root             ###   ########.fr       */
+/*   Updated: 2023/10/05 17:44:41 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,17 @@ class AForm
         AForm &operator=(AForm const &b);
 
         std::string const   &getName(void)const;
+		virtual std::string const   getTarget(void)const = 0;
         int const           &getGradeSigned(void)const;
         int const           &getGradeExec(void)const;
         bool const          &getSigned(void)const;
         void                setSigned(int i);
-        void                beSigned(Bureaucrat b);
+        void                beSigned(Bureaucrat const &b);
         void                checkGrade(void)const;
         virtual void        execute(Bureaucrat const &executor)const = 0;
 
     private:
-        AForm(); // why in private ?
+        AForm();
         std::string const   _name;
         int const           _gradeSigned;
         int const           _gradeExec;
@@ -65,7 +66,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "The execution or signed grade for the Form is too high" DEFAULT);
+			return (MAGENTA "-> The Bureaucrat's signed grade is too high <-" DEFAULT);
 		}
 	};
 
@@ -74,7 +75,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "The execution or signed grade for the Form is too low" DEFAULT);
+			return (MAGENTA "-> The Bureaucrat's signed grade is too low <-" DEFAULT);
 		}
 	};
 
@@ -83,8 +84,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("The form cannot be executed, either because it wasn't sign"
-					"ed, or because the executor has a rank too low");
+			return (MAGENTA "-> The Form can't be executed, Bureaucrat hasn't the requested grade <-" DEFAULT);
 		}
 	};
 	
@@ -93,7 +93,16 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("Couldn't create _shrubbery File");
+			return (MAGENTA "-> Form couldn't open _shrubbery file." DEFAULT);
+		}
+	};
+
+	class CantCreateForme: public std::exception
+	{
+	public:
+		virtual const char* what() const throw()
+		{
+			return (MAGENTA "-> Intern coudn't create Form because the requested Form doesn't exist <-" DEFAULT);
 		}
 	};
 };
@@ -101,3 +110,4 @@ class AForm
 std::ostream &operator<<(std::ostream &c, const AForm &f);
 
 #endif
+

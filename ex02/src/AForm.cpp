@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/04 12:05:24 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:39:33 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ AForm::AForm(std::string const &name, int const gradeSigned, int const gradeExec
 {
     std::cout << GREEN "AForm Parametric Constructor -> called" DEFAULT << std::endl;
     _signed = false;
-   //checkGrade();
 }
 
 AForm::AForm(AForm const &b) : _gradeSigned(1), _gradeExec(1)
@@ -40,16 +39,14 @@ AForm &AForm::operator=(AForm const &b)
     std::cout << GREEN "AForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _signed = b._signed;
-   // checkGrade();
     return (*this);
 }
 
 std::ostream &operator<<(std::ostream &c, const AForm &f)
 {
-    c << f.getName() << " Form has to be signed by a "
-    << f.getGradeSigned() << " grade and execute by a "
-    << f.getGradeExec() << " grade, it is "
-    << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
+    c << f.getName() << " has to be signed by a grade "<< f.getGradeSigned()
+      << " and executed by a grade " << f.getGradeExec() << ", the Form is "
+      << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
     return (c);
 }
 
@@ -75,7 +72,7 @@ bool const  &AForm::getSigned(void)const
 
 void    AForm::setSigned(int i)
 {
-    this->_signed = i;
+    _signed = i;
 }
 
 void   AForm::checkGrade(void)const
@@ -86,21 +83,15 @@ void   AForm::checkGrade(void)const
 		throw AForm::GradeTooLowException();
 }
 
-void    AForm::beSigned(Bureaucrat b)
+void    AForm::beSigned(Bureaucrat const &b)
 {
-    if (b.getGrade() < 150 || b.getGrade() > 0)
+    if (b.getGrade() == getGradeSigned())
         setSigned(1);
     else
     {
-        if (b.getGrade() < 1)
-        {
-		    throw Bureaucrat::GradeTooHighException();
-            delete this;
-        }
-	    else if (b.getGrade() > 150)
-		{
-            throw Bureaucrat::GradeTooLowException();
-            delete this;
-        }
+        if (b.getGrade() < getGradeSigned())
+		    throw AForm::GradeTooHighException();
+	    else if (b.getGrade() > getGradeSigned())
+		    throw AForm::GradeTooLowException();
     }
 }

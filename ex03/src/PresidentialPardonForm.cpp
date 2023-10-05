@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:10 by root              #+#    #+#             */
-/*   Updated: 2023/09/11 17:22:47 by root             ###   ########.fr       */
+/*   Updated: 2023/10/05 16:40:20 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon Form", 25, 5), _target(target)
 {
     std::cout << BLUE "PresidentialPardonForm Default Constructor -> called" DEFAULT << std::endl;
-    checkGrade();
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &b) : AForm("Presidential Pardon Form", 25, 5)
@@ -34,14 +33,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
      std::cout << BLUE "PresidentialPardonForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _target = b._target;
-    checkGrade();
     return (*this);
-}
-
-std::ostream &operator<<(std::ostream &c, const PresidentialPardonForm &b)
-{
-    c << b.getTarget();
-    return (c);
 }
 
 std::string const   PresidentialPardonForm ::getTarget(void)const
@@ -49,8 +41,26 @@ std::string const   PresidentialPardonForm ::getTarget(void)const
     return (_target);
 }
 
-void		PresidentialPardonForm::execute(const Bureaucrat &executor) const
+void		PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    std::cout << "Dear " << executor.getName() << ", " << getName()
+    if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
+    {
+        std::cout << "Dear " << executor.getName() << ", " << getName()
         << " have been forgiven by Zaphod Beeblebrox!!" << std::endl;
+    }
+    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
+    {
+		    throw AForm::CantExecuteForm();
+    }
+    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
+    {
+        if (executor.getGrade() < getGradeSigned())
+		    throw AForm::GradeTooHighException();
+	    else if (executor.getGrade() > getGradeExec())
+		    throw AForm::GradeTooLowException();
+    }
+     else
+    {
+		throw AForm::CantExecuteForm();
+    }
 }

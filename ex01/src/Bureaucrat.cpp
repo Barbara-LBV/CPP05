@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 14:33:44 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 12:24:02 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
-    c << b.getGrade();
-    return (c)
+    c << b.getName() << " Bureaucrat has a " << b.getGrade();
+    return (c);
 ;}
 
 std::string const    &Bureaucrat::getName(void)const
@@ -71,7 +71,7 @@ void Bureaucrat::decrementGrade(int grade)
 {
     int rank = getGrade() + grade;
     setGrade(rank);
-   // checkGrade();
+    checkGrade();
 }
 
 void    Bureaucrat::setGrade(int nb)
@@ -87,44 +87,17 @@ void   Bureaucrat::checkGrade(void)const
 		throw Bureaucrat::GradeTooLowException();
 }
 
-//void    Bureaucrat::signForm(Form &f)
-//{
-//    if (f.getSigned() == 1)
-//        std::cout << BOLD << this->getName() << " signed " << f.getName() << DEFAULT << std::endl;
-//    else if (f.getSigned() == false && this->_grade < 1)
-//        std::cout << BOLD << this->getName()  << " couldn't sign " << f.getName() << " because grade is too high" << DEFAULT << std::endl;
-//    else if (f.getSigned() == false && this->_grade > 150)
-//        std::cout << BOLD << this->getName()  << " couldn't sign " << f.getName() << " because grade is too low" << DEFAULT << std::endl;
-//}
-
-bool	Bureaucrat::signForm(Form &f)const
-{
-	if (f.getSigned() == 1)
-	{
-		std::cout << this->_name << " signs form " << f.getName()
-			<< std::endl;
-		return true;
-	}
-	else
-	{
-		std::cout << this->_name << " cannot sign form " << f.getName()
-			<< " because their grade is not high enough" << std::endl;
-		return false;
-	}
-}
-
-bool	Bureaucrat::executeForm(const Form &f)const
+void	Bureaucrat::signForm(Form &f)
 {
 	try
 	{
-		f.checkExec(*this);
-		std::cout << this->_name << " executes form " << f.getName()
-			<< std::endl;
-		return true;
+		f.beSigned(*this);
+		std::cout << this->_name << " signs form " << f.getName() << std::endl;
 	}
-	catch (Form::CantExecuteForm &e)
+	catch (std::exception &e)
 	{
+		std::cout << this->_name << " cannot sign form " << f.getName()
+			<< " because their grade is not high enough" << std::endl;
 		std::cout << e.what() << std::endl;
-		return false;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:54:15 by root              #+#    #+#             */
-/*   Updated: 2023/09/04 18:48:01 by root             ###   ########.fr       */
+/*   Updated: 2023/10/05 15:43:49 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class Bureaucrat
 
         Bureaucrat &operator=(Bureaucrat const &b);
 
-        std::string const    &getName(void)const;
+        std::string const   &getName(void)const;
         int                 getGrade(void)const;
         void                incrementGrade(int grade);
         void                decrementGrade(int grade);

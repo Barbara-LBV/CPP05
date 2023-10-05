@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 14:30:52 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:25:42 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Form::Form(std::string const &name, int const gradeSigned, int const gradeExec) 
     std::cout << GREEN "Form Parametric Constructor -> called" DEFAULT << std::endl;
 
     _signed = false;
-   checkGrades();
+    checkGrades();
 }
 
 Form::Form(Form const &b) : _gradeSigned(1), _gradeExec(1)
@@ -44,16 +44,15 @@ Form &Form::operator=(Form const &b)
     {
         Form(b._name, b._gradeSigned, b._gradeExec);
         _signed = b._signed;
-    }
-    //checkGrades();
+    }  
+    checkGrades();
     return (*this);
 }
 
 std::ostream &operator<<(std::ostream &c, const Form &f)
 {
-    c << f.getName() << " Form has to be signed by a "
-      << f.getGradeSigned() << " grade and execute by a "
-      << f.getGradeExec() << " grade, it is "
+    c << f.getName() << " Form has to be signed by a grade "<< f.getGradeSigned()
+      << " and execute by a grade " << f.getGradeExec() << ", the Form is "
       << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
     return (c);
 }
@@ -98,15 +97,15 @@ void   Form::checkGrades(void)const
 		throw Form::GradeTooLowException();
 }
 
-void    Form::beSigned(Bureaucrat b)
+void    AForm::beSigned(Bureaucrat const &b)
 {
-    if (b.getGrade() < 150 || b.getGrade() > 0)
+    if (b.getGrade() == getGradeSigned())
         setSigned(1);
     else
     {
-        if (b.getGrade() < 1)
-		    throw Form::GradeTooHighException();
-	    else if (b.getGrade() > 150)
-		    throw Form::GradeTooLowException();
+        if (b.getGrade() < getGradeSigned())
+		    throw AForm::GradeTooHighException();
+	    else if (b.getGrade() > getGradeSigned())
+		    throw AForm::GradeTooLowException();
     }
 }

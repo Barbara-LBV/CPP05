@@ -6,13 +6,13 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/02 15:22:59 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 11:28:14 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name(""), _grade (0)
+Bureaucrat::Bureaucrat() : _name("Def"), _grade (0)
 {
     std::cout << BLUE "Bureaucrat Default Constructor -> called" DEFAULT << std::endl;
 }
@@ -46,7 +46,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
-    c << b.getGrade();
+    c << b.getName() << " Bureaucrat has a " << b.getGrade();
     return (c);
 }
 

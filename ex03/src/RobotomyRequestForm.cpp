@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:22 by root              #+#    #+#             */
-/*   Updated: 2023/10/04 16:53:19 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:36:49 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,34 @@ RobotomyRequestForm::~RobotomyRequestForm()
     std::cout << YELLOW "RobotomyRequestForm Destructor -> called" DEFAULT << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &c, const RobotomyRequestForm &b)
-{
-    c << b.getTarget();
-    return (c);
-}
-
 std::string const   RobotomyRequestForm::getTarget(void)const
 {
     return (_target);
 }
 
-void    RobotomyRequestForm::execute(const Bureaucrat &executor) const
+void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-    std::cout << "   [Drilling noises]" DEFAULT << std::endl;
-   if (std::rand() % 2)
-		std::cout << "Dear " << executor.getName() << ", the victim " << this->_target << " has been successfully robotomized" << std::endl;
-	else
-		std::cout << "The robotomization on " << this->_target << " may have completely failed." << std::endl;
+     if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
+    {
+        std::cout << "   [Drilling noises]" DEFAULT << std::endl;
+        if (std::rand() % 2)
+		    std::cout << "Dear " << executor.getName() << ", the victim " << this->_target << " has been successfully robotomized" << std::endl;
+	    else
+		    std::cout << "The robotomization on " << this->_target << " may have completely failed." << std::endl;
+    }
+    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
+    {
+		    throw AForm::CantExecuteForm();
+    }
+    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
+    {
+        if (executor.getGrade() < getGradeSigned())
+		    throw AForm::GradeTooHighException();
+	    else if (executor.getGrade() > getGradeExec())
+		    throw AForm::GradeTooLowException();
+    }
+     else
+    {
+		throw AForm::CantExecuteForm();
+    }
 }

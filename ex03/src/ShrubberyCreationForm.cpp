@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:51:33 by root              #+#    #+#             */
-/*   Updated: 2023/10/03 15:18:31 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:39:51 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrub Form", 72, 45), _target(target)
 {
     std::cout << GREEN "ShrubberyCreationForm Parametrical Constructor -> called" DEFAULT << std::endl;
-    checkGrade();
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &b) : AForm("Shrub Form", 72, 45)
@@ -38,29 +37,38 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     std::cout << GREEN "ShrubberyCreationForm Destructor -> called" DEFAULT << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &c, const ShrubberyCreationForm &b)
-{
-    c << b.getTarget();
-    return (c);
-}
-
 std::string const    ShrubberyCreationForm::getTarget(void)const
 {
     return (_target);
 }
 
-void    ShrubberyCreationForm::execute(const Bureaucrat &executor) const
+void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    std::string filename = getTarget();
-    filename.insert(filename.size(), "_shrubbery");
-    std::ofstream file(filename.c_str());
-    if (!file.is_open())
+    if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
     {
-        throw AForm::CantOpenFile();
-		return ;
-	}
-    printTree(3, file);
-    std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file"<< std::endl;
+        std::string filename = getTarget();
+        filename.insert(filename.size(), "_shrubbery");
+        std::ofstream file(filename.c_str());
+        if (!file.is_open())
+            throw AForm::CantOpenFile();
+        printTree(3, file);
+        std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file"<< std::endl;
+    }
+    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
+    {
+		    throw AForm::CantExecuteForm();
+    }
+    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
+    {
+        if (executor.getGrade() < getGradeSigned())
+		    throw AForm::GradeTooHighException();
+	    else if (executor.getGrade() > getGradeExec())
+		    throw AForm::GradeTooLowException();
+    }
+     else
+    {
+		throw AForm::CantExecuteForm();
+    }
 }
 
 void printSpaces(int n, std::ofstream &file)

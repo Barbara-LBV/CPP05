@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:23:41 by root              #+#    #+#             */
-/*   Updated: 2023/10/04 16:58:15 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:32:06 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,21 @@ AForm   *Intern::makeForm(std::string name, std::string target)
 		if (option[i] == name)
 			break ;
 	}
-
 	switch(i)
 	{
 		case 0:
-            std::cout << "Intern creates " << name << " form." << std::endl;
 			f = new PresidentialPardonForm(target);
             break ;
 		case 1:
-			std::cout << "Intern creates " << name << " form." << std::endl;
             f = new RobotomyRequestForm(target);
             break ;
 		case 2:
-			std::cout << "Intern creates " << name << " form." << std::endl;
             f = new ShrubberyCreationForm(target);
             break ;
-		case 3:
-			std::cout << "Intern coudn't create " << name << " form cause it doens't exist." << std::endl;
-            f = NULL;
+		default:
+			throw AForm::CantCreateForme();
 			break ;
 	}
+	std::cout << "Intern creates " << name << " Form." << std::endl;
     return (f);
 }
