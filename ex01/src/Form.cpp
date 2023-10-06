@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 15:25:42 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:21:32 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,15 @@ void   Form::checkGrades(void)const
 		throw Form::GradeTooLowException();
 }
 
-void    AForm::beSigned(Bureaucrat const &b)
+void    Form::beSigned(Bureaucrat const &b)
 {
     if (b.getGrade() == getGradeSigned())
         setSigned(1);
-    else
+    else if (b.getGrade() != getGradeSigned())
     {
         if (b.getGrade() < getGradeSigned())
-		    throw AForm::GradeTooHighException();
+		    throw Form::GradeTooHighException();
 	    else if (b.getGrade() > getGradeSigned())
-		    throw AForm::GradeTooLowException();
+		    throw Form::GradeTooLowException();
     }
 }

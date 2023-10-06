@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 12:24:02 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:14:45 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
-    c << b.getName() << " Bureaucrat has a " << b.getGrade();
+    c << b.getName() << " Bureaucrat has a " << b.getGrade() << " grade." << std::endl;
     return (c);
-;}
+}
 
 std::string const    &Bureaucrat::getName(void)const
 {
@@ -92,12 +92,12 @@ void	Bureaucrat::signForm(Form &f)
 	try
 	{
 		f.beSigned(*this);
-		std::cout << this->_name << " signs form " << f.getName() << std::endl;
+		std::cout << this->_name << " signed " << f.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << this->_name << " cannot sign form " << f.getName()
-			<< " because their grade is not high enough" << std::endl;
+		std::cout << this->_name << " can't sign " << f.getName()
+			<< " because they don't have the required grade." << std::endl;
 		std::cout << e.what() << std::endl;
 	}
 }

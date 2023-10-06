@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/10/02 15:02:15 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:28:36 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class Form
         int const                   &getGradeExec(void)const;
         bool const                  &getSigned(void)const;
         void                        setSigned(int i);
-        void                        beSigned(Bureaucrat b);
+        void                        beSigned(Bureaucrat const &b);
         void                        checkGrades(void)const;
         void                        checkExec(const Bureaucrat &b)const;
         
@@ -63,7 +63,7 @@ class Form
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "The execution or signed grade you set is too high" DEFAULT);
+			return (MAGENTA "-> The Form can't be signed, Bureaucrat's grade is too high <-" DEFAULT);
 		}
 	};
 
@@ -72,7 +72,7 @@ class Form
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "The execution or signed grade you set is too low" DEFAULT);
+			return (MAGENTA "-> The Form can't be signed, Bureaucrat's grade is too low <-" DEFAULT);
 		}
 	};
 
@@ -81,7 +81,7 @@ class Form
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("The form can't be executed");
+			return ("The Form can't be executed.");
 		}
 	};
 };

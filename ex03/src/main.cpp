@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 17:34:38 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:43:44 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ int	main(void)
 	try
 	{	
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("Bob", 137);		
+		Bureaucrat	bob("Bobo", 137);		
 		AForm 		*form = NULL;
 		
 		form = someRandomIntern.makeForm("Robotomy Request", "Bender1");
-		std::cout << form->getTarget() << std::endl;
 		if (form == NULL)
 			return 0;
 		bob.signForm(*form);	
@@ -41,11 +40,10 @@ int	main(void)
 	try
 	{
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("Bib", 72);
+		Bureaucrat	bob("Bibi", 72);
 		AForm 		*form;
 		
 		form = someRandomIntern.makeForm("Shrubbery Creation", "Bender2");
-		std::cout << form->getTarget() << std::endl;
 		if (form == NULL)
 			return 0;
 		bob.signForm(*form);	
@@ -61,7 +59,7 @@ int	main(void)
 	try
 	{
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("bub", 1);
+		Bureaucrat	bob("Bubu", 1);
 		AForm 		*form;
 		
 		form = someRandomIntern.makeForm("Presidential Pardon", "Bender3");
@@ -80,7 +78,7 @@ int	main(void)
 	try
 	{
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("beb", 1);		
+		Bureaucrat	bob("Bebe", 1);		
 		AForm 		*form;
 		
 		form = someRandomIntern.makeForm("Presidential pardon", "Bender4");

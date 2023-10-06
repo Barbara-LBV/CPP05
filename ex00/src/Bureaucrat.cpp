@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 11:28:14 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 10:51:56 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 
 std::ostream &operator<<(std::ostream &c, const Bureaucrat &b)
 {
-    c << b.getName() << " Bureaucrat has a " << b.getGrade();
+    c << b.getName() << " Bureaucrat has a " << b.getGrade() << " grade." << std::endl;
     return (c);
 }
 

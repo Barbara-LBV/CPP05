@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:05:33 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 17:41:40 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:17:29 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm  &operator=(RobotomyRequestForm const &b);
 
         void	        	execute(Bureaucrat const &executor) const;
-         std::string const  getTarget(void)const;
+        std::string const   getTarget(void)const;
     
     private:
         std::string _target;

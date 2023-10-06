@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:23:41 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 17:32:06 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:41:22 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ Intern::Intern()
 
 Intern::Intern(Intern const &i)
 {
-    std::cout << BLUE "Intern Copy Constructor -> called" DEFAULT << std::endl;
+    std::cout << BOLD "Intern Copy Constructor -> called" DEFAULT << std::endl;
     *this = i;
 }
 
 Intern::~Intern()
 {
-    std::cout << BOLD "Intern Destructor -> called" DEFAULT << std::endl;
+    std::cout << RED "Intern Destructor -> called" DEFAULT << std::endl;
 }
 
 Intern &Intern::operator=(Intern const &b)
 {
+	std::cout << BOLD "Intern Assignment operator -> called" DEFAULT << std::endl;
     if (this != &b)
         *this = b;
     return (*this);

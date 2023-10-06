@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 15:25:26 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:39:33 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ AForm &AForm::operator=(AForm const &b)
 
 std::ostream &operator<<(std::ostream &c, const AForm &f)
 {
-    c << f.getName() << " Form has to be signed by a grade "<< f.getGradeSigned()
-      << " and execute by a grade " << f.getGradeExec() << ", the Form is "
+    c << f.getName() << " has to be signed by a grade "<< f.getGradeSigned()
+      << " and executed by a grade " << f.getGradeExec() << ", the Form is "
       << ((f.getSigned()) ? "" : "not ") << "signed" << std::endl;
     return (c);
 }

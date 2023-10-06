@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:51:33 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 16:39:51 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:39:08 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrub Form", 72, 45), _target(target)
 {
-    std::cout << GREEN "ShrubberyCreationForm Parametrical Constructor -> called" DEFAULT << std::endl;
+    std::cout << YELLOW "ShrubberyCreationForm Parametrical Constructor -> called" DEFAULT << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &b) : AForm("Shrub Form", 72, 45)
 {
-    std::cout << GREEN "ShrubberyCreationForm Copy Constructor -> called" DEFAULT << std::endl;
+    std::cout << YELLOW "ShrubberyCreationForm Copy Constructor -> called" DEFAULT << std::endl;
     *this = b;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &b)
 {
-     std::cout << GREEN "ShrubberyCreationForm Assignement Operator -> called" DEFAULT << std::endl;
+     std::cout << YELLOW "ShrubberyCreationForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _target = b._target;
     checkGrade();
@@ -34,7 +34,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    std::cout << GREEN "ShrubberyCreationForm Destructor -> called" DEFAULT << std::endl;
+    std::cout << RED "ShrubberyCreationForm Destructor -> called" DEFAULT << std::endl;
 }
 
 std::string const    ShrubberyCreationForm::getTarget(void)const
@@ -44,7 +44,7 @@ std::string const    ShrubberyCreationForm::getTarget(void)const
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
+    if (executor.getGrade() == getGradeExec())
     {
         std::string filename = getTarget();
         filename.insert(filename.size(), "_shrubbery");
@@ -52,20 +52,9 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
         if (!file.is_open())
             throw AForm::CantOpenFile();
         printTree(3, file);
-        std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file"<< std::endl;
+        std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file."<< std::endl;
     }
-    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
-    {
-		    throw AForm::CantExecuteForm();
-    }
-    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
-    {
-        if (executor.getGrade() < getGradeSigned())
-		    throw AForm::GradeTooHighException();
-	    else if (executor.getGrade() > getGradeExec())
-		    throw AForm::GradeTooLowException();
-    }
-     else
+    else
     {
 		throw AForm::CantExecuteForm();
     }

@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:22 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 16:36:49 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:39:45 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &b
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-    std::cout << YELLOW "RobotomyRequestForm Destructor -> called" DEFAULT << std::endl;
+    std::cout << RED "RobotomyRequestForm Destructor -> called" DEFAULT << std::endl;
 }
 
 std::string const   RobotomyRequestForm::getTarget(void)const
@@ -45,7 +45,7 @@ std::string const   RobotomyRequestForm::getTarget(void)const
 
 void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-     if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
+    if (executor.getGrade() == getGradeExec())
     {
         std::cout << "   [Drilling noises]" DEFAULT << std::endl;
         if (std::rand() % 2)
@@ -53,18 +53,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	    else
 		    std::cout << "The robotomization on " << this->_target << " may have completely failed." << std::endl;
     }
-    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
-    {
-		    throw AForm::CantExecuteForm();
-    }
-    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
-    {
-        if (executor.getGrade() < getGradeSigned())
-		    throw AForm::GradeTooHighException();
-	    else if (executor.getGrade() > getGradeExec())
-		    throw AForm::GradeTooLowException();
-    }
-     else
+    else
     {
 		throw AForm::CantExecuteForm();
     }

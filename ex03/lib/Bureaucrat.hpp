@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:54:15 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 16:38:58 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:20:08 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ class Bureaucrat
 	public:
 		virtual const char* what() const throw()
 		{
-			return (YELLOW "-> The grade you set for Bureaucrat is too high <-" DEFAULT);
+			return (YELLOW "The Bureaucrat's grade is too high." DEFAULT);
 		}
 	};
 
@@ -76,7 +76,7 @@ class Bureaucrat
 	public:
 		virtual const char* what() const throw()
 		{
-			return (YELLOW "-> The grade you set for Bureaucrat is too low <-" DEFAULT);
+			return (YELLOW "The Bureaucrat's grade is too low" DEFAULT);
 		}
 	};
 };

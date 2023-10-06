@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:10 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 17:59:25 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:39:30 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon Form", 25, 5), _target(target)
 {
-    std::cout << BLUE "PresidentialPardonForm Default Constructor -> called" DEFAULT << std::endl;
+    std::cout << YELLOW "PresidentialPardonForm Default Constructor -> called" DEFAULT << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &b) : AForm("Presidential Pardon Form", 25, 5)
 {
-    std::cout << BLUE "PresidentialPardonForm Copy Constructor -> called" DEFAULT << std::endl;
+    std::cout << YELLOW "PresidentialPardonForm Copy Constructor -> called" DEFAULT << std::endl;
     *this = b;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-    std::cout << BLUE "PresidentialPardonForm Destructor -> called" DEFAULT << std::endl;
+    std::cout << RED "PresidentialPardonForm Destructor -> called" DEFAULT << std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &b)
 {
-     std::cout << BLUE "PresidentialPardonForm Assignement Operator -> called" DEFAULT << std::endl;
+     std::cout << YELLOW "PresidentialPardonForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _target = b._target;
     return (*this);
@@ -43,23 +43,12 @@ std::string const   PresidentialPardonForm ::getTarget(void)const
 
 void		PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    if (executor.getGrade() == getGradeExec() && executor.getGrade() == getGradeSigned())
+    if (executor.getGrade() == getGradeExec())
     {
-        std::cout << "Dear " << executor.getName() << ", " << getName()
+        std::cout << "Dear " << executor.getName() << ", " << getTarget()
         << " have been forgiven by Zaphod Beeblebrox!!" << std::endl;
     }
-    else if (executor.getGrade() != getGradeExec() && executor.getGrade() == getGradeSigned())
-    {
-		    throw AForm::CantExecuteForm();
-    }
-    else if (executor.getGrade() == getGradeExec() && executor.getGrade() != getGradeSigned())
-    {
-        if (executor.getGrade() < getGradeSigned())
-		    throw AForm::GradeTooHighException();
-	    else if (executor.getGrade() > getGradeExec())
-		    throw AForm::GradeTooLowException();
-    }
-     else
+    else
     {
 		throw AForm::CantExecuteForm();
     }
