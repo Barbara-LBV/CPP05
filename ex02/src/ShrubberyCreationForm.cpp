@@ -6,18 +6,18 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:51:33 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:39:08 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:35:54 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrub Form", 72, 45), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrub Form", 145, 137), _target(target)
 {
     std::cout << YELLOW "ShrubberyCreationForm Parametrical Constructor -> called" DEFAULT << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &b) : AForm("Shrub Form", 72, 45)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &b) : AForm("Shrub Form", 145, 137)
 {
     std::cout << YELLOW "ShrubberyCreationForm Copy Constructor -> called" DEFAULT << std::endl;
     *this = b;
@@ -28,7 +28,6 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
      std::cout << YELLOW "ShrubberyCreationForm Assignement Operator -> called" DEFAULT << std::endl;
     if (this != &b)
         _target = b._target;
-    checkGrade();
     return (*this);
 }
 
@@ -44,7 +43,7 @@ std::string const    ShrubberyCreationForm::getTarget(void)const
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    if (executor.getGrade() == getGradeExec())
+    if (getSigned() == 1 && executor.getGrade() <= getGradeExec())
     {
         std::string filename = getTarget();
         filename.insert(filename.size(), "_shrubbery");
@@ -54,7 +53,12 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
         printTree(3, file);
         std::cout << "Bureaucrat " << executor.getName() << " wrote trees in " << filename << " file."<< std::endl;
     }
-    else
+    else if (getSigned() == 0)
+    {
+        std::cout << "Form not signed." << std::endl;
+		throw AForm::CantExecuteForm();
+    }
+    else if (getSigned() == 1 && executor.getGrade() > getGradeExec())
     {
 		throw AForm::CantExecuteForm();
     }

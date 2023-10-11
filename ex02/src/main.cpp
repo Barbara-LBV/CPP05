@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:55:45 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:29:33 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	
 	try
 	{
-		Bureaucrat		bib("Jerry", 45);
+		Bureaucrat		bib("Jerry", 120);
 		bib.signForm(*form);
 		bib.executeForm(*form);
 	}
@@ -35,7 +35,7 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat		luc("Marc", 5);
+		Bureaucrat		luc("Marc", 4);
 		form = new PresidentialPardonForm("28A");
 		luc.signForm(*form);
 		luc.executeForm(*form);
@@ -49,10 +49,24 @@ int	main(void)
 	
 	try
 	{
-		Bureaucrat		luc("Luc", 137);
+		Bureaucrat		luc("Luc", 12);
 		form = new RobotomyRequestForm("28B");
 		luc.signForm(*form);
 		luc.executeForm(*form);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	delete form;
+	std::cout << std::endl;
+	
+	try
+	{
+		Bureaucrat		flo("Flo", 50);
+		form = new RobotomyRequestForm("28B");
+		flo.signForm(*form);
+		flo.executeForm(*form);
 	}
 	catch (std::exception &e)
 	{

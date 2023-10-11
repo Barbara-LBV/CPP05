@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:05:18 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 14:18:43 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:00:18 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ShrubberyCreationForm : public AForm
         ShrubberyCreationForm  &operator=(ShrubberyCreationForm const &b);
         
         virtual void		execute(Bureaucrat const &executor) const;
-         std::string const   getTarget(void)const;
+        std::string const   getTarget(void)const;
     
     private:
         std::string _target;

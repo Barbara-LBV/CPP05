@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:36:10 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:32:12 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	main(void)
 		john.decrementGrade(1);
 		std::cout << "2. "<< john << std::endl;
 		john.signForm(f);
-		john.incrementGrade(20);
+		john.incrementGrade(15);
 		std::cout << "3. "<< john << std::endl;
 		john.signForm(f);
-		john.incrementGrade(1);
+		john.incrementGrade(-5);
 		std::cout << "4. "<< john << std::endl;
 		john.signForm(f);
-        john.incrementGrade(13);
+        john.incrementGrade(-150);
 		std::cout << "5. "<< john << std::endl;
 		john.signForm(f);
 	}

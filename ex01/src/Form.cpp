@@ -6,13 +6,13 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:21:32 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:31:05 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/Form.hpp"
 
-Form::Form() : _name(""), _gradeSigned(1), _gradeExec(1), _signed(false)
+Form::Form() : _name("Default Form"), _gradeSigned(150), _gradeExec(150), _signed(false)
 {
     std::cout << GREEN "Form Default Constructor -> called" DEFAULT << std::endl;
 }
@@ -20,12 +20,11 @@ Form::Form() : _name(""), _gradeSigned(1), _gradeExec(1), _signed(false)
 Form::Form(std::string const &name, int const gradeSigned, int const gradeExec) : _name(name), _gradeSigned(gradeSigned), _gradeExec(gradeExec)
 {
     std::cout << GREEN "Form Parametric Constructor -> called" DEFAULT << std::endl;
-
     _signed = false;
     checkGrades();
 }
 
-Form::Form(Form const &b) : _gradeSigned(1), _gradeExec(1)
+Form::Form(Form const &b) : _gradeSigned(150), _gradeExec(150)
 {
     std::cout << GREEN "Form Copy Constructor -> called" DEFAULT << std::endl;
     Form(b._name, b._gradeSigned, b._gradeExec);
@@ -82,13 +81,6 @@ void    Form::setSigned(int i)
     this->_signed = i;
 }
 
-void	Form::checkExec( const Bureaucrat &b) const
-{
-	if (this->_signed == false
-			|| b.getGrade() < this->_gradeExec)
-		throw Form::CantExecuteForm();
-}
-
 void   Form::checkGrades(void)const
 {
     if (getGradeExec() < Form::_highestGrade || getGradeSigned() < Form::_highestGrade)
@@ -99,13 +91,16 @@ void   Form::checkGrades(void)const
 
 void    Form::beSigned(Bureaucrat const &b)
 {
-    if (b.getGrade() == getGradeSigned())
+    if (b.getGrade() >= Form::_highestGrade && b.getGrade() <= getGradeSigned())
         setSigned(1);
-    else if (b.getGrade() != getGradeSigned())
+    else if (b.getGrade() < Form::_highestGrade)
     {
-        if (b.getGrade() < getGradeSigned())
-		    throw Form::GradeTooHighException();
-	    else if (b.getGrade() > getGradeSigned())
-		    throw Form::GradeTooLowException();
+        setSigned(0);
+        throw Form::GradeTooHighException();
+    }
+	else if (b.getGrade() > Form::_lowestGrade)
+    {
+        setSigned(0);
+		throw Form::GradeTooLowException();
     }
 }

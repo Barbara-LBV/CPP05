@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:34:12 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:34:39 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,15 @@ class AForm
         bool const          &getSigned(void)const;
         void                setSigned(int i);
         void                beSigned(Bureaucrat const &b);
-        void                checkGrade(void)const;
         virtual void        execute(Bureaucrat const &executor)const = 0;
 
     private:
-        AForm();
+		AForm();
         std::string const   _name;
         int const           _gradeSigned;
         int const           _gradeExec;
         bool                _signed;
-        static const int	_lowestGrade = 150;
+		static const int	_lowestGrade = 150;
 	    static const int	_highestGrade = 1;
     
     public:

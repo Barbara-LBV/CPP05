@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:34:26 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:31:57 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,24 @@ class Bureaucrat;
 class AForm
 {
     public:
-        AForm(std::string const &name, int const gradeSigned, int const gradeExec);
+	    AForm(std::string const &name, int const gradeSigned, int const gradeExec);
         AForm(AForm const &b);
         virtual ~AForm();
 
         AForm &operator=(AForm const &b);
 
         std::string const   &getName(void)const;
-		virtual std::string const getTarget(void)const = 0;
+		virtual std::string const 	getTarget(void)const = 0;
         int const           &getGradeSigned(void)const;
         int const           &getGradeExec(void)const;
         bool const          &getSigned(void)const;
         void                setSigned(int i);
         void                beSigned(Bureaucrat const &b);
-        void                checkGrade(void)const;
         virtual void        execute(Bureaucrat const &executor)const = 0;
 
     private:
-        AForm(); // why in private ?
-        std::string const   _name;
+		AForm();
+       	std::string const   _name;
         int const           _gradeSigned;
         int const           _gradeExec;
         bool                _signed;
@@ -97,7 +96,7 @@ class AForm
 		}
 	};
 
-	class CantCreateForme: public std::exception
+	class CantCreateForm: public std::exception
 	{
 	public:
 		virtual const char* what() const throw()

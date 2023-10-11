@@ -6,13 +6,13 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:14:45 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:18:10 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name(""), _grade (0)
+Bureaucrat::Bureaucrat() : _name("Default B."), _grade (150)
 {
     std::cout << BLUE "Bureaucrat Default Constructor -> called" DEFAULT << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 16:06:10 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:39:30 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 15:38:08 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,17 @@ std::string const   PresidentialPardonForm ::getTarget(void)const
 
 void		PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    if (executor.getGrade() == getGradeExec())
+    if (getSigned() == 1 && executor.getGrade() <= getGradeExec())
     {
         std::cout << "Dear " << executor.getName() << ", " << getTarget()
         << " have been forgiven by Zaphod Beeblebrox!!" << std::endl;
     }
-    else
+    else if (getSigned() == 0)
+    {
+        std::cout << "Form not signed." << std::endl;
+		throw AForm::CantExecuteForm();
+    }
+    else if (getSigned() == 1 && executor.getGrade() > getGradeExec())
     {
 		throw AForm::CantExecuteForm();
     }

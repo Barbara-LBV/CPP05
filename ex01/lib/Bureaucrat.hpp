@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:54:15 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:19:14 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:51:19 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ class Bureaucrat
         int                 getGrade(void)const;
         void                incrementGrade(int grade);
         void                decrementGrade(int grade);
+        void                checkGrade(void)const;
         void                setGrade(int nb);
         void                signForm(Form &f);
 
     private:
         std::string const   _name;
         int                 _grade;
-        void                checkGrade(void)const;
         static const int	_lowestGrade = 150;
 	    static const int	_highestGrade = 1;
 

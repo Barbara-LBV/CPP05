@@ -6,13 +6,13 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/05 17:39:33 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:15:27 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/AForm.hpp"
 
-AForm::AForm() : _name(""), _gradeSigned(1), _gradeExec(1), _signed(false)
+AForm::AForm() : _name("Default"), _gradeSigned(150), _gradeExec(150), _signed(false)
 {
     std::cout << GREEN "AForm Default Constructor -> called" DEFAULT << std::endl;
 }
@@ -23,7 +23,7 @@ AForm::AForm(std::string const &name, int const gradeSigned, int const gradeExec
     _signed = false;
 }
 
-AForm::AForm(AForm const &b) : _gradeSigned(1), _gradeExec(1)
+AForm::AForm(AForm const &b) : _gradeSigned(150), _gradeExec(150)
 {
     std::cout << GREEN "AForm Copy Constructor -> called" DEFAULT << std::endl;
     _signed = b._signed;
@@ -75,23 +75,12 @@ void    AForm::setSigned(int i)
     _signed = i;
 }
 
-void   AForm::checkGrade(void)const
-{
-    if (getGradeExec() < AForm::_highestGrade || getGradeSigned() < AForm::_highestGrade)
-		throw AForm::GradeTooHighException();
-	else if (getGradeExec() > AForm::_lowestGrade || getGradeSigned() > AForm::_lowestGrade )
-		throw AForm::GradeTooLowException();
-}
-
 void    AForm::beSigned(Bureaucrat const &b)
 {
-    if (b.getGrade() == getGradeSigned())
+    if (b.getGrade() <= getGradeSigned())
         setSigned(1);
     else
     {
-        if (b.getGrade() < getGradeSigned())
-		    throw AForm::GradeTooHighException();
-	    else if (b.getGrade() > getGradeSigned())
-		    throw AForm::GradeTooLowException();
+		throw AForm::GradeTooLowException();
     }
 }

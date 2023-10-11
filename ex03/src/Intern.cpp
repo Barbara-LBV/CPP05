@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 18:23:41 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:41:22 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:46:10 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ AForm   *Intern::makeForm(std::string name, std::string target)
             f = new ShrubberyCreationForm(target);
             break ;
 		default:
-			throw AForm::CantCreateForme();
+			throw AForm::CantCreateForm();
 			break ;
 	}
 	std::cout << "Intern creates " << name << " Form." << std::endl;

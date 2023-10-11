@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:43:44 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:18:08 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ int	main(void)
 	try
 	{	
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("Bobo", 137);		
+		Bureaucrat	bob("Bobo", 44);		
 		AForm 		*form = NULL;
 		
 		form = someRandomIntern.makeForm("Robotomy Request", "Bender1");
-		if (form == NULL)
-			return 0;
-		bob.signForm(*form);	
+		bob.signForm(*form);
 		bob.executeForm(*form);
 		delete form;
 	}
@@ -44,8 +42,6 @@ int	main(void)
 		AForm 		*form;
 		
 		form = someRandomIntern.makeForm("Shrubbery Creation", "Bender2");
-		if (form == NULL)
-			return 0;
 		bob.signForm(*form);	
 		bob.executeForm(*form);
 		delete form;
@@ -63,8 +59,6 @@ int	main(void)
 		AForm 		*form;
 		
 		form = someRandomIntern.makeForm("Presidential Pardon", "Bender3");
-		if (form == NULL)
-			return 0;
 		bob.signForm(*form);	
 		bob.executeForm(*form);
 		delete form;
@@ -78,12 +72,10 @@ int	main(void)
 	try
 	{
 		Intern 		someRandomIntern;
-		Bureaucrat	bob("Bebe", 1);		
+		Bureaucrat	bob("Bebe", 144);		
 		AForm 		*form;
 		
-		form = someRandomIntern.makeForm("Presidential pardon", "Bender4");
-		if (form == NULL)
-			return 0;
+		form = someRandomIntern.makeForm("Presidential Pardon", "Bender4");
 		bob.signForm(*form);	
 		bob.executeForm(*form);
 		delete form;

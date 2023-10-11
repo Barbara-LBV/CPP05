@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:54:15 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 11:19:55 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:51:43 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ class Bureaucrat
         void                setName(std::string name);
         void                signForm(AForm &f);
         void                executeForm(AForm const &form);
+        void                checkGrade(void)const;
 
     private:
         std::string const   _name;
         int                 _grade;
-        void                checkGrade(void)const;
         static const int	_lowestGrade = 150;
 	    static const int	_highestGrade = 1;
 

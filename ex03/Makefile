@@ -23,8 +23,8 @@ OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 DEPS		= $(addprefix $(OBJS_DIR), $(SRCS_NAME:%.cpp=%.d))
 
 # Headers list
-HEADER_DIR	:=	/lib/
-HEADER_NAME	:=	Bureaucrat.hpp \
+HEADERS_PATH	:=	./lib/
+HEADERS_NAMES:= Bureaucrat.hpp \
 			AForm.hpp \
 			ShrubberyCreationForm.hpp \
 			RobotomyRequestForm.hpp \
