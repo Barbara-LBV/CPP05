@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:11:01 by root              #+#    #+#             */
-/*   Updated: 2023/10/11 11:31:57 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:21:42 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ class AForm
         int const           _gradeSigned;
         int const           _gradeExec;
         bool                _signed;
-        static const int	_lowestGrade = 150;
-	    static const int	_highestGrade = 1;
     
     public:
 
@@ -65,7 +63,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "-> The Form can't be signed, Bureaucrat's grade is too high <-" DEFAULT);
+			return (MAGENTA "-> The Form can't be signed, the grade is too high <-" DEFAULT);
 		}
 	};
 
@@ -74,7 +72,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "-> The Form can't be signed, Bureaucrat's grade is too low <-" DEFAULT);
+			return (MAGENTA "-> The Form can't be signed, the grade is too low <-" DEFAULT);
 		}
 	};
 
@@ -83,7 +81,7 @@ class AForm
 	public:
 		virtual const char* what() const throw()
 		{
-			return (MAGENTA "-> The Form cann't be executed, Bureaucrat hasn't the requested grade <-" DEFAULT);
+			return (MAGENTA "-> The Form can't be executed, unvalid requested grade <-" DEFAULT);
 		}
 	};
 	

@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 12:42:04 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:52:00 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,18 @@ void    Bureaucrat::incrementGrade(int grade)
 {
     int rank = getGrade() - grade;
     setGrade(rank);
-    checkGrade();
 }
 
 void Bureaucrat::decrementGrade(int grade)
 {
     int rank = getGrade() + grade;
     setGrade(rank);
-    checkGrade();
 }
 
 void    Bureaucrat::setGrade(int nb)
 {
     this->_grade = nb;
+    checkGrade();
 }
 
 void   Bureaucrat::checkGrade(void)const

@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:25 by root              #+#    #+#             */
-/*   Updated: 2023/10/09 15:32:12 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:41:22 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@ int	main(void)
 	{
 		Form	f("EB110", 1, 1);
 		std::cout << f;
-		Bureaucrat	john("John", 15);
+		std::cout << std::endl;
+		Bureaucrat	john("John", 151);
+		std::cout << "1. "<< john;
 		john.signForm(f);
-		std::cout << "1. "<< john << std::endl;
 		john.decrementGrade(1);
-		std::cout << "2. "<< john << std::endl;
+		std::cout << std::endl;
+		std::cout << "2. "<< john;
 		john.signForm(f);
 		john.incrementGrade(15);
-		std::cout << "3. "<< john << std::endl;
+		std::cout << std::endl;
+		std::cout << "3. "<< john;
 		john.signForm(f);
 		john.incrementGrade(-5);
-		std::cout << "4. "<< john << std::endl;
+		std::cout << std::endl;
+		std::cout << "4. "<< john;
 		john.signForm(f);
         john.incrementGrade(-150);
-		std::cout << "5. "<< john << std::endl;
+		std::cout << std::endl;
+		std::cout << "5. "<< john;
 		john.signForm(f);
 	}
 	catch (std::exception &e)
@@ -40,5 +45,33 @@ int	main(void)
 		std::cout << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+	//{
+	//	Form	f("EB110", 1, 1);
+	//	std::cout << f;
+	//	std::cout << std::endl;
+	//	Bureaucrat	john("John", 15);
+	//	std::cout << "1. "<< john;
+	//	john.signForm(f);
+	//	john.decrementGrade(1);
+	//	std::cout << std::endl;
+	//	std::cout << "2. "<< john;
+	//	john.signForm(f);
+	//	john.incrementGrade(15);
+	//	std::cout << std::endl;
+	//	std::cout << "3. "<< john;
+	//	john.signForm(f);
+	//	john.incrementGrade(-5);
+	//	std::cout << std::endl;
+	//	std::cout << "4. "<< john;
+	//	john.signForm(f);
+    //    john.incrementGrade(-150);
+	//	std::cout << std::endl;
+	//	std::cout << "5. "<< john;
+	//	john.signForm(f);
+	//}
+	//catch (std::exception &e)
+	//{
+	//	std::cout << e.what() << std::endl;
+	//}
 	return 0;
 }

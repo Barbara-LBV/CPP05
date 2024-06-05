@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/09 15:31:05 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:02:25 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,24 +83,18 @@ void    Form::setSigned(int i)
 
 void   Form::checkGrades(void)const
 {
-    if (getGradeExec() < Form::_highestGrade || getGradeSigned() < Form::_highestGrade)
+    if (getGradeExec() < Bureaucrat::_highestGrade || getGradeSigned() < Bureaucrat::_highestGrade)
 		throw Form::GradeTooHighException();
-	else if (getGradeExec() > Form::_lowestGrade || getGradeSigned() > Form::_lowestGrade )
+	else if (getGradeExec() > Bureaucrat::_lowestGrade || getGradeSigned() > Bureaucrat::_lowestGrade )
 		throw Form::GradeTooLowException();
 }
 
 void    Form::beSigned(Bureaucrat const &b)
 {
-    if (b.getGrade() >= Form::_highestGrade && b.getGrade() <= getGradeSigned())
+    if (b.getGrade() <= getGradeSigned())
         setSigned(1);
-    else if (b.getGrade() < Form::_highestGrade)
+	else
     {
-        setSigned(0);
-        throw Form::GradeTooHighException();
-    }
-	else if (b.getGrade() > Form::_lowestGrade)
-    {
-        setSigned(0);
 		throw Form::GradeTooLowException();
     }
 }

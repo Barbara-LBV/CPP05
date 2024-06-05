@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:12:31 by root              #+#    #+#             */
-/*   Updated: 2023/10/11 14:19:52 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:49:15 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void    AForm::setSigned(int i)
 
 void    AForm::beSigned(Bureaucrat const &b)
 {
-   if (b.getGrade() <= getGradeSigned())
+    if (b.getGrade() <= getGradeSigned() && _signed == false)
         setSigned(1);
     else
     {

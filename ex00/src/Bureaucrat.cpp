@@ -6,7 +6,7 @@
 /*   By: blefebvr <blefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:10:28 by root              #+#    #+#             */
-/*   Updated: 2023/10/06 10:51:56 by blefebvr         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:47:06 by blefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,34 @@ void    Bureaucrat::incrementGrade(int grade)
 {
     int rank = getGrade() - grade;
     setGrade(rank);
-    checkGrade();
 }
 
 void Bureaucrat::decrementGrade(int grade)
 {
     int rank = getGrade() + grade;
     setGrade(rank);
-    checkGrade();
 }
 
 void    Bureaucrat::setGrade(int nb)
 {
     this->_grade = nb;
+    checkGrade();
 }
 
 void    Bureaucrat::checkGrade(void)const
 {
-    if (this->_grade < Bureaucrat::highestGrade)
-		throw Bureaucrat::GradeTooHighException();
-	else if (this->_grade > Bureaucrat::lowestGrade)
-		throw Bureaucrat::GradeTooLowException();
+    try
+    {
+        std::cout << "1/ in check grade bureaucrate\n";
+        if (this->_grade < Bureaucrat::highestGrade)
+            throw Bureaucrat::GradeTooHighException();
+        else if (this->_grade > Bureaucrat::lowestGrade)
+            throw Bureaucrat::GradeTooLowException();
+        std::cout << "2/ in check grade bureaucrate\n";
+    }
+    catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+    
 }
